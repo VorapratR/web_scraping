@@ -15,11 +15,11 @@ def is_float(value):
         return False
 
 
-def getNumer(datas):
+def getNumer(values):
     result = 0
-    for data in datas:
-        if is_float(data) == True:
-            result = float(data)
+    for value in values:
+        if is_float(value) == True:
+            result = float(value)
     return(result)
 
 
