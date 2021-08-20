@@ -19,28 +19,9 @@ API output
 
 
 ## ml_model function
+
+```python
 def ml_model(lst_x = [1,2,3,4,5]):
     y = (lst_x[-1]+lst_x[-2]+lst_x[-3])/3
     return y
-
-
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
 ```
