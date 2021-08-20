@@ -15,7 +15,7 @@ def is_float(value):
         return False
 
 
-def getNumer(values):
+def get_numer(values):
     result = 0
     for value in values:
         if is_float(value) == True:
@@ -32,11 +32,11 @@ def web_scraping(input):
     head = soup.find("div", {
         "class": "instrument-price_instrument-price__3uw25 instrument-price_instrument-price-lg__3ES-Q flex items-end flex-wrap"})
     first_value = head.find("span", {"class": "instrument-price_last__KQzyA"})
-    first_value = getNumer(first_value.contents)
+    first_value = get_numer(first_value.contents)
     second_value = head.find("span", {
         "class": "instrument-price_change-value__jkuml instrument-price_up__2-OcT"})
-    second_value = getNumer(second_value.contents)
+    second_value = get_numer(second_value.contents)
     third_value = head.find("span", {
         "class": "instrument-price_change-percent__19cas instrument-price_up__2-OcT"})
-    third_value = getNumer(third_value.contents)
+    third_value = get_numer(third_value.contents)
     return [first_value, second_value, third_value]
