@@ -11,7 +11,7 @@ app.config["DEBUG"] = True
 def api():
     base_res = {
         'result': 1,
-        'datail': '',
+        'detail': '',
         'message': 'Success'
     }
     return jsonify(base_res)
@@ -23,13 +23,13 @@ def api_all():
     if(equities):
         base_res = {
             'result': 1,
-            'datail': ml_model(web_scraping(equities)),
+            'detail': ml_model(web_scraping(equities)),
             'message': 'Success'
         }
     else:
         base_res = {
             'result': 0,
-            'datail': '',
+            'detail': '',
             'message': 'Equities is null'
         }
     return jsonify(base_res)
