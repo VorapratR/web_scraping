@@ -1,7 +1,7 @@
 import flask
 from flask import request, jsonify
 
-from web_scraping import ml_model, web_scraping
+from web_scraping import ml_model, investing_scraping
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -9,30 +9,38 @@ app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
 def api():
-    base_res = {
+    response = {
         'result': 1,
         'detail': '',
         'message': 'Success'
     }
-    return jsonify(base_res)
+    return jsonify(response)
 
 
-@app.route('/investing', methods=['GET'])
-def api_all():
-    equities = request.args.get('equities', default='*', type=str)
-    if(equities):
-        base_res = {
-            'result': 1,
-            'detail': ml_model(web_scraping(equities)),
-            'message': 'Success'
-        }
+@app.route('/api/investing', methods=['GET'])
+def api_investing():
+    equities = request.args.get('equities', type=str)
+    if(equities != None):
+        equity = investing_scraping(equities)
+        if equity != None:
+            response = {
+                'result': 1,
+                'detail': ml_model(equity),
+                'message': 'Success'
+            }
+        else:
+            response = {
+                'result': 0,
+                'detail': ml_model(),
+                'message': 'Error in investing_scraping'
+            }
     else:
-        base_res = {
+        response = {
             'result': 0,
             'detail': '',
-            'message': 'Equities is null'
+            'message': 'Please add equities!'
         }
-    return jsonify(base_res)
+    return jsonify(response)
 
 
 app.run()
